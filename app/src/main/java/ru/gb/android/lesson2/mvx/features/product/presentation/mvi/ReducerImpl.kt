@@ -5,7 +5,6 @@ import ru.gb.android.lesson2.mvx.features.product.presentation.mvi.entities.Effe
 import ru.gb.android.lesson2.mvx.features.product.presentation.mvi.entities.State
 
 class ReducerImpl : Reducer<State, Effect> {
-
     override fun invoke(state: State, effect: Effect): State {
         return when (effect) {
             Effect.Loading -> state.copy(

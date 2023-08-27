@@ -7,7 +7,6 @@ import ru.gb.android.lesson2.mvx.features.product.presentation.mvi.entities.Stat
 import ru.gb.android.lesson2.mvx.features.product.presentation.mvi.entities.Wish
 
 class NewsPublisherImpl : NewsPublisher<Wish, Effect, State, News> {
-
     override fun invoke(
         action: Wish,
         effect: Effect,

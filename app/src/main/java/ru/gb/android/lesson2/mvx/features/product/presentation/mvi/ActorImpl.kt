@@ -23,7 +23,7 @@ class ActorImpl(
 
     override fun invoke(state: State, wish: Wish): Observable<out Effect> {
         return when (wish) {
-            is Wish.LoadProduct -> loadCharacters()
+            is Wish.LoadProduct -> loadProduct()
                 .map { Effect.ProductLoaded(it) as Effect }
                 .startWith((Effect.Loading))
                 .onErrorReturn { Effect.Error(it) }
@@ -35,7 +35,7 @@ class ActorImpl(
         }
     }
 
-    private fun loadCharacters(): Observable<ProductState> {
+    private fun loadProduct(): Observable<ProductState> {
         return rxSingle {
             consumeFirstProductUseCase()
                 .flatMapLatest { product ->
