@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:name="ru.gb.android.lesson2.mvx.MarketSampleApp"
+        android:name="ru.gb.android.workshop2.MarketSampleApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +18,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name="ru.gb.android.lesson2.mvx.MainActivity"
+            android:name="ru.gb.android.workshop2.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="ru.gb.android.workshop2.card.ProductCardActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name="ru.gb.android.workshop2.list.ProductListActivity"
+            android:exported="true"/>
 
     </application>
 

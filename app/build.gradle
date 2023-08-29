@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.gb.android.lesson2.marketsample'
+    namespace 'ru.gb.android.workshop2.marketsample'
     compileSdk 33
 
     defaultConfig {
-        applicationId "ru.gb.android.lesson2.marketsample"
+        applicationId "ru.gb.android.workshop2.marketsample"
         minSdk 24
         targetSdk 33
         versionCode 1
