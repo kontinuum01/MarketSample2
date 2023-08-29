@@ -28,11 +28,11 @@
         </activity>
 
         <activity
-            android:name="ru.gb.android.workshop2.card.ProductCardActivity"
+            android:name="ru.gb.android.workshop2.presentation.card.ProductCardActivity"
             android:exported="true"/>
 
         <activity
-            android:name="ru.gb.android.workshop2.list.ProductListActivity"
+            android:name="ru.gb.android.workshop2.presentation.list.ProductListActivity"
             android:exported="true"/>
 
     </application>

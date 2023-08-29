@@ -3,8 +3,8 @@ package ru.gb.android.workshop2
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.gb.android.workshop2.card.ProductCardActivity
-import ru.gb.android.workshop2.list.ProductListActivity
+import ru.gb.android.workshop2.presentation.card.ProductCardActivity
+import ru.gb.android.workshop2.presentation.list.ProductListActivity
 import ru.gb.android.workshop2.marketsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
