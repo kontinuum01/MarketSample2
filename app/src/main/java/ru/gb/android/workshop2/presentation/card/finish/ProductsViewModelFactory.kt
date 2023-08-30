@@ -2,7 +2,6 @@ package ru.gb.android.workshop2.presentation.card.finish
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import ru.gb.android.workshop2.domain.product.ConsumeFirstProductUseCase
 import ru.gb.android.workshop2.domain.promo.ConsumePromosUseCase
@@ -20,15 +19,11 @@ class ProductsViewModelFactory(
     ): T {
         when {
             modelClass.isAssignableFrom(ProductsViewModel::class.java) -> {
-
-                val savedStateHandle = extras.createSavedStateHandle()
-
                 @Suppress("UNCHECKED_CAST")
                 return ProductsViewModel(
                     consumeFirstProductUseCase = consumeFirstProductUseCase,
                     productStateFactory = productStateFactory,
                     consumePromosUseCase = consumePromosUseCase,
-                    //savedStateHandle = savedStateHandle,
                 ) as T
             }
         }
