@@ -1,11 +1,11 @@
-package ru.gb.android.workshop2.presentation.list.start.promo.adapter
+package ru.gb.android.workshop2.presentation.list.promo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import ru.gb.android.workshop2.marketsample.databinding.ItemPromoBinding
-import ru.gb.android.workshop2.presentation.list.start.promo.PromoVO
+import ru.gb.android.workshop2.presentation.list.promo.PromoVO
 
 class PromoAdapter : ListAdapter<PromoVO, PromoHolder>(DiffCallback()) {
 

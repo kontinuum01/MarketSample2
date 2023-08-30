@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.list.start.product
+package ru.gb.android.workshop2.presentation.list.product
 
 interface ProductListView {
     fun showProgress()

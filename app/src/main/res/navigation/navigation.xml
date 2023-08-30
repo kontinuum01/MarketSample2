@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_products"
-        android:name="ru.gb.android.workshop2.presentation.list.start.product.ProductListFragment"
+        android:name="ru.gb.android.workshop2.presentation.list.product.ProductListFragment"
         android:label="@string/title_products"
         tools:layout="@layout/fragment_product_list" />
 
     <fragment
         android:id="@+id/navigation_promo"
-        android:name="ru.gb.android.workshop2.presentation.list.start.promo.PromoListFragment"
+        android:name="ru.gb.android.workshop2.presentation.list.promo.PromoListFragment"
         android:label="@string/title_promo"
         tools:layout="@layout/fragment_promo_list" />
 

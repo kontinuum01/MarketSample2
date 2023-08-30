@@ -1,11 +1,11 @@
-package ru.gb.android.workshop2.presentation.list.start.product.adapter
+package ru.gb.android.workshop2.presentation.list.product.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import ru.gb.android.workshop2.marketsample.databinding.ItemProductBinding
-import ru.gb.android.workshop2.presentation.list.start.product.ProductVO
+import ru.gb.android.workshop2.presentation.list.product.ProductVO
 
 class ProductsAdapter : ListAdapter<ProductVO, ProductHolder>(DiffCallback()) {
 

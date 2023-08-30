@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.list.start.promo
+package ru.gb.android.workshop2.presentation.list.promo
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.list.start.promo
+package ru.gb.android.workshop2.presentation.list.promo
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.gb.android.workshop2.marketsample.R
 import ru.gb.android.workshop2.marketsample.databinding.FragmentPromoListBinding
-import ru.gb.android.workshop2.presentation.list.start.promo.adapter.PromoAdapter
+import ru.gb.android.workshop2.presentation.list.promo.adapter.PromoAdapter
 
 class PromoListFragment : Fragment(), PromoListView {
 

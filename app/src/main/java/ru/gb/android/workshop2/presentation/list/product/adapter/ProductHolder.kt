@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.list.start.product.adapter
+package ru.gb.android.workshop2.presentation.list.product.adapter
 
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.gb.android.workshop2.marketsample.R
 import ru.gb.android.workshop2.marketsample.databinding.ItemProductBinding
-import ru.gb.android.workshop2.presentation.list.start.product.ProductVO
+import ru.gb.android.workshop2.presentation.list.product.ProductVO
 
 class ProductHolder(
     private val binding: ItemProductBinding,

@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.list.start.product
+package ru.gb.android.workshop2.presentation.list.product
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.gb.android.workshop2.marketsample.R
 import ru.gb.android.workshop2.marketsample.databinding.FragmentProductListBinding
-import ru.gb.android.workshop2.presentation.list.start.product.adapter.ProductsAdapter
+import ru.gb.android.workshop2.presentation.list.product.adapter.ProductsAdapter
 
 class ProductListFragment : Fragment(), ProductListView {
 
