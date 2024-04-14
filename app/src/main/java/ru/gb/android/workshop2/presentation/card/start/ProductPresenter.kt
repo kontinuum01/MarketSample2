@@ -6,7 +6,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
@@ -34,7 +33,6 @@ class ProductPresenter(
             consumeFirstProductUseCase(),
             consumePromosUseCase(),
         ) { product, promos -> productVOFactory.create(product, promos) }
-            .flowOn(Dispatchers.IO)
             .onStart {
                 view.showProgress()
                 view.hideName()

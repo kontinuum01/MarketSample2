@@ -2,13 +2,11 @@ package ru.gb.android.workshop2.presentation.card.finish
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
@@ -35,7 +33,6 @@ class ProductsViewModel(
             consumeFirstProductUseCase(),
             consumePromosUseCase(),
         ) { product, promos -> productStateFactory.create(product, promos) }
-            .flowOn(Dispatchers.IO)
             .onStart {
                 _state.update { screenState -> screenState.copy(isLoading = true) }
             }
