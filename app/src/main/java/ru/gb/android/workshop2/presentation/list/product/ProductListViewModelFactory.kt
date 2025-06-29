@@ -1,19 +1,19 @@
-package ru.gb.android.workshop2.presentation.card.start
+package ru.gb.android.workshop2.presentation.list.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.gb.android.workshop2.domain.product.ConsumeFirstProductUseCase
+import ru.gb.android.workshop2.domain.product.ConsumeProductsUseCase
 import ru.gb.android.workshop2.domain.promo.ConsumePromosUseCase
 
-class ProductViewModelFactory (
-    private val consumeFirstProductUseCase: ConsumeFirstProductUseCase,
+class ProductListViewModelFactory(
+    private val consumeProductsUseCase: ConsumeProductsUseCase,
     private val productStateFactory: ProductStateFactory,
     private val consumePromosUseCase: ConsumePromosUseCase,
-): ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return ProductViewModel(
-            consumeFirstProductUseCase = consumeFirstProductUseCase,
+        return ProductListViewModel(
+            consumeProductsUseCase = consumeProductsUseCase,
             productStateFactory = productStateFactory,
             consumePromosUseCase = consumePromosUseCase
         ) as T

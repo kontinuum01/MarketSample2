@@ -23,15 +23,15 @@ class ProductsAdapter : ListAdapter<ProductVO, ProductHolder>(DiffCallback()) {
             holder.bind(entity)
         }
     }
-}
 
-private class DiffCallback : DiffUtil.ItemCallback<ProductVO>() {
+    private class DiffCallback : DiffUtil.ItemCallback<ProductVO>() {
 
-    override fun areItemsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
-        return oldItem.id == newItem.id
-    }
+        override fun areItemsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    override fun areContentsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
-        return oldItem == newItem
+        override fun areContentsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
+            return oldItem == newItem
+        }
     }
 }

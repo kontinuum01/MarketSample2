@@ -1,19 +1,21 @@
 package ru.gb.android.workshop2.presentation.card.start
 
+
 import ru.gb.android.workshop2.ServiceLocator
 
 object FeatureServiceLocator {
 
-    fun providePresenter(): ProductPresenter {
-        return ProductPresenter(
+
+    fun provideProductViewModelFactory(): ProductViewModelFactory {
+        return ProductViewModelFactory(
             consumeFirstProductUseCase = ServiceLocator.provideConsumeFirstProductUseCase(),
-            productVOFactory = provideProductVOFactory(),
+            productStateFactory = provideProductStateFactory(),
             consumePromosUseCase = ServiceLocator.provideConsumePromosUseCase(),
         )
     }
 
-    private fun provideProductVOFactory(): ProductVOFactory {
-        return ProductVOFactory(
+    private fun provideProductStateFactory(): ProductStateFactory {
+        return ProductStateFactory(
             discountFormatter = ServiceLocator.provideDiscountFormatter(),
             priceFormatter = ServiceLocator.providePriceFormatter(),
         )

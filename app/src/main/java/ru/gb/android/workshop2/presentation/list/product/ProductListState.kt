@@ -1,15 +1,15 @@
-package ru.gb.android.workshop2.presentation.card.start
+package ru.gb.android.workshop2.presentation.list.product
 
 import android.content.Context
 
-data class ScreenState(
+data class ScreenListState(
     val isLoading: Boolean = false,
-    val productState: ProductState = ProductState(),
+    val productListState: ProductListState = ProductListState(),
     val hasError: Boolean = false,
-    val getErrorText: (Context) -> String = { "" }
+    val getErrorText: (Context) -> String = {"" }
 )
 
-data class ProductState(
+data class ProductListState(
     val id: String = "",
     val name: String = "",
     val image: String = "",

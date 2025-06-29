@@ -1,4 +1,4 @@
-package ru.gb.android.workshop2.presentation.card.start
+package ru.gb.android.workshop2.presentation.list.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,42 +13,42 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.gb.android.workshop2.domain.product.ConsumeFirstProductUseCase
+import ru.gb.android.workshop2.domain.product.ConsumeProductsUseCase
 import ru.gb.android.workshop2.domain.promo.ConsumePromosUseCase
 import ru.gb.android.workshop2.marketsample.R
 
-
-class ProductViewModel(
-    private val consumeFirstProductUseCase: ConsumeFirstProductUseCase,
+class ProductListViewModel (
+    private val consumeProductsUseCase: ConsumeProductsUseCase,
     private val productStateFactory: ProductStateFactory,
     private val consumePromosUseCase: ConsumePromosUseCase,
 ) : ViewModel() {
-    private val _state = MutableStateFlow(ScreenState())
-    val state: StateFlow<ScreenState> = _state.asStateFlow()
+
+    private val _state = MutableStateFlow(ScreenListState())
+    val state: StateFlow<ScreenListState> = _state.asStateFlow()
 
     fun loadProduct() {
         combine(
-            consumeFirstProductUseCase(),
+            consumeProductsUseCase(),
             consumePromosUseCase(),
         ) { product, promos -> productStateFactory.create(product, promos) }
             .onStart {
-                _state.update { screenState ->
-                    screenState.copy(isLoading = true)
+                _state.update { screenListState ->
+                    screenListState.copy(isLoading = true)
                 }
             }
 
-            .onEach { productState ->
-                _state.update { screenState ->
-                    screenState.copy(
+            .onEach { productListState ->
+                _state.update { screenListState ->
+                    screenListState.copy(
                         isLoading = false,
-                        productState = productState
+                        productListState = productListState
                     )
                 }
             }
             .catch {
                 sheduleRefresh()
-                _state.update { screenState ->
-                    screenState.copy(
+                _state.update { screenListState ->
+                    screenListState.copy(
                         hasError = true,
                         getErrorText = {context -> context.getString(R.string.error_wile_loading_data) }
                     )
@@ -59,7 +59,7 @@ class ProductViewModel(
     }
 
     fun errorShown(){
-        _state.update { screenState -> screenState.copy(hasError = false) }
+        _state.update { screenListState -> screenListState.copy(hasError = false) }
     }
 
     private suspend fun sheduleRefresh() {
@@ -68,6 +68,5 @@ class ProductViewModel(
             loadProduct()
         }
     }
+
 }
-
-
