@@ -1,5 +1,6 @@
 package ru.gb.android.workshop2.presentation.list.product
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.gb.android.workshop2.domain.product.ConsumeProductsUseCase
@@ -17,5 +18,6 @@ class ProductListViewModelFactory(
             productStateFactory = productStateFactory,
             consumePromosUseCase = consumePromosUseCase
         ) as T
+
     }
 }

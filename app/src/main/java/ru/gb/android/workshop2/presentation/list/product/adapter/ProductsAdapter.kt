@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import ru.gb.android.workshop2.marketsample.databinding.ItemProductBinding
-import ru.gb.android.workshop2.presentation.list.product.ProductVO
+import ru.gb.android.workshop2.presentation.list.product.ProductListState
 
-class ProductsAdapter : ListAdapter<ProductVO, ProductHolder>(DiffCallback()) {
+class ProductsAdapter : ListAdapter<ProductListState, ProductHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
         return ProductHolder(
@@ -24,13 +24,14 @@ class ProductsAdapter : ListAdapter<ProductVO, ProductHolder>(DiffCallback()) {
         }
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<ProductVO>() {
 
-        override fun areItemsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
+    private class DiffCallback : DiffUtil.ItemCallback<ProductListState>() {
+
+        override fun areItemsTheSame(oldItem: ProductListState, newItem: ProductListState): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ProductVO, newItem: ProductVO): Boolean {
+        override fun areContentsTheSame(oldItem: ProductListState, newItem: ProductListState): Boolean {
             return oldItem == newItem
         }
     }

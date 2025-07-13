@@ -35,6 +35,7 @@ class ProductViewModel(
                 _state.update { screenState ->
                     screenState.copy(isLoading = true)
                 }
+
             }
 
             .onEach { productState ->

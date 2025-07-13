@@ -1,6 +1,7 @@
 package ru.gb.android.workshop2.presentation.card.start
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,11 +73,13 @@ class ProductFragment : Fragment() {
 
             binding.addToCart.visibility = View.GONE
         }
+        Log.i("My tags","renderProductState")
     }
 
     private fun renderLoading() {
         hideAll()
         binding.progress.visibility = View.VISIBLE
+        Log.i("My tags","renderLoading")
     }
 
     private fun hideAll() {

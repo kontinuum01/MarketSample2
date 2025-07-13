@@ -1,5 +1,6 @@
 package ru.gb.android.workshop2.presentation.list.product
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay

@@ -1,6 +1,7 @@
 package ru.gb.android.workshop2.presentation.list.product
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,7 @@ class ProductListFragment : Fragment() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.loadProduct()
+
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -57,36 +59,42 @@ class ProductListFragment : Fragment() {
                             viewModel.errorShown()
                         }
 
-                        else -> renderProductListState(state.productListState)
+                        else -> renderProductListState()
                     }
                 }
             }
         }
     }
 
-    private fun renderProductListState(productListState : ProductListState) {
-//        hideAll()
-        with(productListState) {
-            binding.recyclerView.visibility = View.VISIBLE
-            binding.swipeRefreshLayout.isRefreshing = true
-            showProductList(productList = listOf())
-        }
+    private fun renderProductListState() {
+
+        binding.recyclerView.visibility = View.VISIBLE
+        binding.swipeRefreshLayout.isRefreshing = true
+        showProductList(productList = listOf())
+        Log.i("My tag","renderProductListState")
     }
 
     private fun renderLoading(){
         hideAll()
         binding.progress.visibility = View.VISIBLE
-
+        Log.i("My tag","renderLoading")
     }
 
-    private fun showProductList(productList : List<ProductVO>){
+    private fun showProductList(productList: List<ProductListState>) {
         binding.recyclerView.visibility = View.VISIBLE
         adapter.submitList(productList)
+
+        if (productList.isEmpty()) {
+            Log.e("My tag", "ProductListEmpty")
+            showError()
+        } else Log.d("My tag", "ProductListNotEmpty")
+
     }
 
     private fun hideAll(){
         binding.swipeRefreshLayout.isRefreshing = false
         binding.recyclerView.visibility = View.GONE
+
     }
 
     override fun onDestroyView() {

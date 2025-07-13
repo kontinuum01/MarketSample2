@@ -1,5 +1,6 @@
 package ru.gb.android.workshop2.presentation.list.product
 
+
 import ru.gb.android.workshop2.domain.product.Product
 import ru.gb.android.workshop2.domain.promo.Promo
 import ru.gb.android.workshop2.presentation.common.DiscountFormatter
@@ -23,6 +24,7 @@ class ProductStateFactory(
             hasDiscount = promoForProduct != null,
             discount = promoForProduct.resolveDiscount(),
         )
+
     }
 
     private fun Promo?.resolveDiscount(): String {
@@ -33,7 +35,7 @@ class ProductStateFactory(
             ?: ""
     }
 
-    }
+}
 
 
 
