@@ -83,12 +83,6 @@ class ProductListFragment : Fragment() {
         binding.recyclerView.visibility = View.VISIBLE
         adapter.submitList(productList)
         binding.progress.visibility = View.GONE
-
-        if (productList.isEmpty()) {
-            Log.e("My tag", "ProductListEmpty")
-            showError()
-        } else Log.d("My tag", "ProductListNotEmpty")
-
     }
 
     private fun hideAll() {
