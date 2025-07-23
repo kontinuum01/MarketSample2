@@ -23,16 +23,16 @@ class PromoAdapter : ListAdapter<PromoState, PromoHolder>(DiffCallback()) {
             holder.bind(entity)
         }
     }
-}
 
-private class DiffCallback : DiffUtil.ItemCallback<PromoState>() {
+    private class DiffCallback : DiffUtil.ItemCallback<PromoState>() {
 
-    override fun areItemsTheSame(oldItem: PromoState, newItem: PromoState): Boolean {
-        return oldItem.id == newItem.id
-    }
+        override fun areItemsTheSame(oldItem: PromoState, newItem: PromoState): Boolean {
+            return oldItem.id == newItem.id
+        }
 
 
-    override fun areContentsTheSame(oldItem: PromoState, newItem: PromoState): Boolean {
-        return oldItem == newItem
+        override fun areContentsTheSame(oldItem: PromoState, newItem: PromoState): Boolean {
+            return oldItem == newItem
+        }
     }
 }

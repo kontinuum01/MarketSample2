@@ -2,6 +2,7 @@ package ru.gb.android.workshop2.presentation.list.product
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,41 +34,41 @@ class ProductListViewModel (
             consumePromosUseCase(),
         ) { product, promos -> productStateFactory.create(product, promos) }
             .onStart {
-                _state.update { screenListState ->
-                    screenListState.copy(isLoading = true)
-                }
+                setLoadingState(true)
             }
-
             .onEach { productListState ->
-                _state.update { screenListState ->
-                    screenListState.copy(
-                        isLoading = false,
-                        productListState = productListState
-                    )
-                }
+                updateState { it.copy(isLoading = false, productListState = listOf(productListState)) }
+                Log.d("ProductListViewModel", "products: $productListState")
             }
-            .catch {
-                sheduleRefresh()
-                _state.update { screenListState ->
-                    screenListState.copy(
+            .catch { error ->
+                Log.e("ProductListViewModel", "Error loading products", error)
+                scheduleRefresh()
+                updateState {
+                    it.copy(
                         hasError = true,
-                        getErrorText = {context -> context.getString(R.string.error_wile_loading_data) }
+                        getErrorText = { context -> context.getString(R.string.error_wile_loading_data) }
                     )
-
                 }
             }
             .launchIn(viewModelScope)
     }
 
-    fun errorShown(){
-        _state.update { screenListState -> screenListState.copy(hasError = false) }
-    }
-
-    private suspend fun sheduleRefresh() {
+    private fun scheduleRefresh() {
         viewModelScope.launch {
             delay(3000)
             loadProduct()
         }
     }
 
+    fun errorShown() {
+        updateState { it.copy(hasError = false) }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        updateState { it.copy(isLoading = isLoading) }
+    }
+
+    private fun updateState(update: (ScreenListState) -> ScreenListState) {
+        _state.update(update)
+    }
 }

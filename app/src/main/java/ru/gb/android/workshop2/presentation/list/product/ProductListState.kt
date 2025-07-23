@@ -1,14 +1,18 @@
 package ru.gb.android.workshop2.presentation.list.product
 
 import android.content.Context
-import android.util.Log
 
 data class ScreenListState(
     val isLoading: Boolean = false,
-    val productListState: ProductListState = ProductListState(),
+    val productListState: List<ProductListState> = emptyList(),
     val hasError: Boolean = false,
-    val getErrorText: (Context) -> String = { "" }
-)
+    val getErrorText: (Context) -> String = { "Произошла ошибка" }
+) {
+    val productList: List<ProductListState>
+        get() {
+           return productListState
+        }
+}
 
 data class ProductListState(
     val id: String = "",
@@ -17,8 +21,5 @@ data class ProductListState(
     val price: String = "",
     val hasDiscount: Boolean = false,
     val discount: String = "",
-) {
-     init {
-         Log.d("ProductListStateInit","id = $id, name = $name, image = $image, price = $price, discount = $discount")
-     }
-}
+)
+

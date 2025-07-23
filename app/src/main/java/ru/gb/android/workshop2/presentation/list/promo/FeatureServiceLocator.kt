@@ -5,7 +5,6 @@ import ru.gb.android.workshop2.ServiceLocator
 
 object FeatureServiceLocator {
 
-
     fun providePromoViewModelFactory(): ViewModelProvider.Factory {
         return PromoViewModelFactory(
             promoStateMapper = provideProductStateMapper(),

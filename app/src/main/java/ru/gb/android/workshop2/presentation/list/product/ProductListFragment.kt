@@ -20,7 +20,7 @@ import ru.gb.android.workshop2.presentation.list.product.adapter.ProductsAdapter
 class ProductListFragment : Fragment() {
 
     private var _binding: FragmentProductListBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding should not be accessed after onDestroyView")
 
     private val adapter = ProductsAdapter()
 
@@ -59,19 +59,18 @@ class ProductListFragment : Fragment() {
                             viewModel.errorShown()
                         }
 
-                        else -> renderProductListState()
+                        else -> renderProductListState(state.productList)
                     }
                 }
             }
         }
     }
 
-    private fun renderProductListState() {
-
+     private fun renderProductListState(productList: List<ProductListState>) {
         binding.recyclerView.visibility = View.VISIBLE
-        binding.swipeRefreshLayout.isRefreshing = true
-        showProductList(productList = listOf())
-        Log.i("My tag","renderProductListState")
+        binding.swipeRefreshLayout.isRefreshing = false
+        showProductList(productList)
+        Log.i("ProductListFragment", "renderProductListState")
     }
 
     private fun renderLoading(){
@@ -83,6 +82,7 @@ class ProductListFragment : Fragment() {
     private fun showProductList(productList: List<ProductListState>) {
         binding.recyclerView.visibility = View.VISIBLE
         adapter.submitList(productList)
+        binding.progress.visibility = View.GONE
 
         if (productList.isEmpty()) {
             Log.e("My tag", "ProductListEmpty")
@@ -91,10 +91,10 @@ class ProductListFragment : Fragment() {
 
     }
 
-    private fun hideAll(){
+    private fun hideAll() {
         binding.swipeRefreshLayout.isRefreshing = false
         binding.recyclerView.visibility = View.GONE
-
+        binding.progress.visibility = View.GONE
     }
 
     override fun onDestroyView() {

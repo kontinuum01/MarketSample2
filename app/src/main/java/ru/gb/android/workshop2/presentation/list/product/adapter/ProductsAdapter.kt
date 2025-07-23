@@ -24,7 +24,6 @@ class ProductsAdapter : ListAdapter<ProductListState, ProductHolder>(DiffCallbac
         }
     }
 
-
     private class DiffCallback : DiffUtil.ItemCallback<ProductListState>() {
 
         override fun areItemsTheSame(oldItem: ProductListState, newItem: ProductListState): Boolean {

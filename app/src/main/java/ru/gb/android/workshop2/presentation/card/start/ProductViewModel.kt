@@ -1,5 +1,6 @@
 package ru.gb.android.workshop2.presentation.card.start
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
@@ -34,8 +35,8 @@ class ProductViewModel(
             .onStart {
                 _state.update { screenState ->
                     screenState.copy(isLoading = true)
-                }
 
+                }
             }
 
             .onEach { productState ->

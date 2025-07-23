@@ -19,14 +19,12 @@ import ru.gb.android.workshop2.presentation.list.promo.adapter.PromoAdapter
 
 class PromoListFragment : Fragment() {
 
-    private val tag = "My TAG"
-
     private var _binding: FragmentPromoListBinding? = null
     private val binding get() = _binding!!
 
     private val adapter = PromoAdapter()
 
-    private val promoViewModels by viewModels<PromoViewModel> {
+    private val promoViewModel by viewModels<PromoViewModel> {
         FeatureServiceLocator.providePromoViewModelFactory()
     }
 
@@ -41,57 +39,60 @@ class PromoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        promoViewModels.loadPromos()
+        promoViewModel.loadPromos()
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            promoViewModels.loadPromos()
+            promoViewModel.loadPromos()
         }
-
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                promoViewModels.promoState.collect {
-                    showProgress()
-                    showPromos(promoList = listOf())
-                    hideProgress()
+                promoViewModel.promoState.collect { state ->
+                    when {
+                        state.isLoading -> renderLoading()
+                        state.hasError -> {
+                            showError()
+                            promoViewModel.errorShown()
+                        }
+
+                        else -> renderPromoListState(state.promoList)
+                    }
                 }
             }
         }
+    }
 
+    private fun renderPromoListState(promoList: List<PromoState>) {
+        binding.recyclerView.visibility = View.VISIBLE
+        binding.swipeRefreshLayout.isRefreshing = false
+        showPromoList(promoList)
+        Log.i("PromoListFragment", "renderPromoListState")
+    }
+
+    private fun renderLoading(){
+        hideAll()
+        binding.progress.visibility = View.VISIBLE
+        Log.i("My tag","renderLoading")
+    }
+
+    private fun showPromoList(promoList: List<PromoState>) {
+        binding.recyclerView.visibility = View.VISIBLE
+        adapter.submitList(promoList)
+        binding.progress.visibility = View.GONE
+    }
+
+    private fun hideAll() {
+        binding.swipeRefreshLayout.isRefreshing = false
+        binding.recyclerView.visibility = View.GONE
+        binding.progress.visibility = View.GONE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun showProgress() {
-        binding.progress.visibility = View.VISIBLE
-    }
-
-    private fun hideProgress() {
-        binding.progress.visibility = View.GONE
-    }
-
-     private fun showPromos(promoList: List<PromoState>) {
-        binding.recyclerView.visibility = View.VISIBLE
-        adapter.submitList(promoList)
-
-         if (promoList.isEmpty()) {
-             Log.e(tag, "PromoListEmpty")
-             showError()
-         } else
-             Log.d(tag, "showPromos")
-
-
-     }
-
-    private fun hidePromos() {
-        binding.recyclerView.visibility = View.GONE
     }
 
     private fun showError() {
